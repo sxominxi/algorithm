@@ -1,19 +1,11 @@
-piece = list(map(int, input().split()))
+input = list(map(int, input().split()))
+output = [0, 0, 0, 0, 0, 0]
 
-ans = [0]*6
+output[0] = 1 - input[0] 
+output[1] = 1 - input[1] 
+output[2] = 2 - input[2] 
+output[3] = 2 - input[3] 
+output[4] = 2 - input[4] 
+output[5] = 8 - input[5] 
 
-for i in range(6):
-  if i == 0 or i == 1:
-    a = piece[i] - 1
-    ans[i] = -a
-
-  if i == 2 or i == 3 or i == 4:
-    b = piece[i] - 2
-    ans[i] = -b
-
-  if i == 5:
-    c = piece[i] - 8
-    ans[i] = -c
-
-print(*ans)
-  
+print(*output)

@@ -1,24 +1,39 @@
 package algorithm.baekjoon.bronze;
 
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.*;
+import java.util.*;
+
 
 public class N3003 {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        int[] piece = new int[6]; // 배열 크기 선언
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        for (int i = 0; i < piece.length; i++) {
-            piece[i] = scanner.nextInt(); // 사용자 입력을 배열에 할당
+        // 입력을 받음
+        String line = br.readLine();
 
-            if (i == 0 || i == 1) {
-                System.out.print(1 - piece[i] + " ");
-            }
-            if (i == 2 || i == 3 || i == 4) {
-                System.out.print(2- piece[i]+ " ");
-            }
-            if (i == 5) {
-                System.out.print(8 - piece[i]);
-            }
+        // 문자열 배열로 변환
+        String[] input = line.split(" ");
+
+        // int 배열로 변환
+        int[] numbers = new int[input.length];
+        for (int i = 0; i < input.length; i++) {
+            numbers[i] = Integer.parseInt(input[i]);
+        }
+
+        // 필요한 피스 배열
+        int[] need = new int[6];
+
+        need[0] = 1 - numbers[0];
+        need[1] = 1 - numbers[1];
+        need[2] = 2 - numbers[2];
+        need[3] = 2 - numbers[3];
+        need[4] = 2 - numbers[4];
+        need[5] = 8 - numbers[5];
+
+        for (int i = 0; i < input.length; i++) {
+            System.out.print(need[i] + " ");
         }
     }
 }
