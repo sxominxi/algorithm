@@ -1,36 +1,36 @@
-# 인풋 받기
 N = int(input())
 
 cnt = 0
-
-for n in range(N):
-    # 문자별로 받기
-    word = list(input())
-    # 중복 제거 리스트
-    set_word = list(set(word))
-
+for n in range(0, N):
+    word = list(map(str, input()))
+    word_set = list(set(word))
+    
+    # 1. word와 word_set 알파벳 비교
+    # 2. 같으면 다음 인덱스 체크 > 반복
+    # 3. 다음 인덱스에 다른 알파벳이 나오면 word_set에서 *으로 변경
+    # 4. word_set에 없는 알파벳이 word에서 나오면 break, false 처리
+    # 5. 문제 없으면 cnt += 1
+    
     flag = True
-
-    for w in set_word:
-         # 각 문자의 인덱스 저장하기
-        idx = []
-
-        for i in range(len(word)):
-            if word[i] == w:
-                idx.append(i)
-
-        # 인덱스가 이어지는지 확인
-        # 근데 idx의 길이만큼 돌리면 마지막 자리에서 에러나니까 -1
-        for j in range(len(idx)-1):
-            # 만약 인덱스가 이어지지 않는다면 False를 저장하고 끝내기기
-            if (idx[j] + 1) != idx[j+1]:
+    i = 0
+    while i < len(word):
+        if word[i] not in word_set:
                 flag = False
                 break
-            # 이어진다면 True 유지
-            else:
-                continue
-                
-    # 단어를 전부 돌았을때도 True가 유지되었다면 개수를 세준다다
+        else:
+            j = 0
+            while j < len(word_set):
+                if word[i] != word_set[j]:
+                    j += 1
+                    continue
+                else:
+                    if i < len(word)-1:
+                        if word[i+1] != word_set[j]:
+                            word_set[j] = '*' 
+                j += 1
+                    
+            i += 1
+
     if flag == True:
         cnt += 1
 

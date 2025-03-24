@@ -5,4 +5,3 @@ for alp in a:
     s = s.replace(alp, '*') 
 
 print(len(s))
-
