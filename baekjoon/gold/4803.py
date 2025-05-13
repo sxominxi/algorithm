@@ -12,7 +12,7 @@ def findCycle(start):
     if visited[node]:
       return True
     
-    # 재귀귀
+    # 재귀
     parent[node] = start
     visited[node] = 1
     if findCycle(node):
