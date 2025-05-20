@@ -1,4 +1,5 @@
 import sys
+from collections import deque
 input = sys.stdin.readline
 
 N,M = map(int, input().split())
@@ -8,33 +9,30 @@ for _ in range(M):
   A,B = map(int, input().split())
   trust[B].append(A)
 
-def dfs(x, visited):
-  visited[x] = 1
-  cnt = 1
-  for node in trust[x]:
-    if not visited[node]:
-      cnt += dfs(node,visited)
+def bfs(start):
+  visited = [0]*(N+1)
+  q = deque([start])
+  visited[start] = 1
+  cnt =1
+
+  while q:
+    node = q.popleft()
+    for next in trust[node]:
+      if not visited[next]:
+        visited[next]= 1
+        q.append(next)
+        cnt += 1
+  
   return cnt
 
-ans = []
-for i in range(1, N+1):
-  visited = [0]*(N+1)
-  ans.append(dfs(i,visited))
+max_count = 0
+result = []
+for i in range(1, N + 1):
+    cnt = bfs(i)
+    if cnt > max_count:
+        max_count = cnt
+        result = [i]
+    elif cnt == max_count:
+        result.append(i)
 
-for a in len(ans):
-  if ans[a] == max(ans):
-    print(a, end=' ')
-
-# for i in range(N+1):
-#   x = trust[i]
-
-#   for j in x:
-#     y = trust[j]
-#     if y :
-#       trust[i].extend(y) 여기서 메모리 초과..
-#     else:
-#       continue
-
-# max_len = max(len(lst) for lst in trust)
-# result = [i for i in range(len(trust)) if len(trust[i]) == max_len]
-# print(*result)
+print(*result)

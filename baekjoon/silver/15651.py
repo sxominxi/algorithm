@@ -12,7 +12,6 @@ def back():
   
   for i in range(1, N+1):
     seq.append(i)
-    print('seq = ',seq)
     back()
     seq.pop()
 
