@@ -1,18 +1,16 @@
-def facto(N):
+import sys
+input = sys.stdin.readline
+
+def factorial(n):
   ans = 1
-  while N > 1:
-    ans *= N
-    N -= 1
+  while n > 1:
+    ans *= n
+    n -= 1
   return ans
 
-import sys
+T = int(input())
+for t in range(T):
+  N, M = map(int, input().split())
 
-T = int(sys.stdin.readline())
-
-for _ in range(T):
-  N, M = map(int, sys.stdin.readline().split())
-
-  if M == N:
-    print(1)
-  else:
-    print(round(facto(M) / (facto(M-N)*facto(N))))
+  # 조합 mCn
+  print(factorial(M)//(factorial(N)*factorial(M-N)))

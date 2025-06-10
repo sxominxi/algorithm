@@ -1,8 +1,11 @@
-import sys
+n = int(input())
 
-N = int(sys.stdin.readline())
-ans = 1
-while N > 1:
-  ans *= N
-  N -= 1
-print(ans)
+def fibo(n):
+  if n == 0:
+    return 0
+  elif n == 1:
+    return 1
+  else:
+    return fibo(n-1) + fibo(n-2)
+  
+print(fibo(n))
