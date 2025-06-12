@@ -6,8 +6,14 @@ coin = []
 for _ in range(n):
   coin.append(int(input()))
 
-dp = [[0]*n for _ in range(k)]
+dp = [100001 for i in range(k + 1)]
+dp[0] = 0
 
-# for i in range(k):
-#   for j in range(n):
-    
+for c in coin:
+  for i in range(c, k + 1):  # 현재 갖고 있는 동전 i를 기준으로 i 미만의 값은 갱신될리 없으므로 i부터 시작.
+        dp[i] = min(dp[i], dp[i-c] + 1)
+
+if dp[k] == 100001:
+    print(-1)
+else:
+    print(dp[k])
